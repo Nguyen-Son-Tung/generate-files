@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GIF.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/files")]
     [ApiController]
     public class FilesController : ControllerBase
     {
@@ -17,7 +17,7 @@ namespace GIF.Api.Controllers
         public async Task<IActionResult> GenerateDs0([FromBody] Ds0Request request)
         {
             await _ds0FileService.ExportFileAsync(request);
-            return Ok("File has been generated successfully.");
+            return Ok("A file has been generated successfully.");
         }
     }
 }

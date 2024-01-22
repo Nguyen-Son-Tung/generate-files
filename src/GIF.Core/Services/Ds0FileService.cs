@@ -8,15 +8,20 @@ namespace GIF.Core.Services
     {
         readonly CsvFileService _csvFileService;
         readonly Ds0Setting _ds0Setting;
-        public Ds0FileService(CsvFileService csvFileService, IOptions<Ds0Setting> ds0Setting)
+        readonly MasterData _masterData;
+        public Ds0FileService(CsvFileService csvFileService
+            , IOptions<Ds0Setting> ds0Setting
+            , IOptions<MasterData> masterData)
         {
             _csvFileService = csvFileService;
             _ds0Setting = ds0Setting.Value;
+            _masterData = masterData.Value;
+
         }
         public async Task ExportFileAsync(Ds0Request ds0Request)
         {
             var records = GenerateNewAddressData(ds0Request.PostCode, ds0Request.FromHouseNumber, ds0Request.ToHouseNumber);
-            var path = Path.Combine(_ds0Setting.DiskPath, $"DS0-{ds0Request.PostCode}-{ds0Request.ToHouseNumber}-{DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss")}.csv");
+            var path = Path.Combine(_ds0Setting.DiskPath, $"DS0-{ds0Request.PostCode.ToUpper()}-{ds0Request.ToHouseNumber}-{DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss")}.csv");
             await _csvFileService.WriteAsync(path, records);
         }
         private IEnumerable<Ds0Model> GenerateNewAddressData(string postCode, int fromNumber, int toNumber)
@@ -33,8 +38,8 @@ namespace GIF.Core.Services
                     Plaats = "Khanh Hoa",
                     Buurtschap = "Nha Trang",
                     Gemeente = "Vinh Luong",
-                    Gebied = "0701-01",
-                    Bouwopdracht = "0701-01",
+                    Gebied = _masterData.Area,
+                    Bouwopdracht = _masterData.Co,
                     AdresType = "FttH-Wit",
                     Opmerking = "Opmerking",
                     BagId = "1710000000000000",
