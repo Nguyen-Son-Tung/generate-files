@@ -18,7 +18,7 @@ namespace GIF.Core.Services
             _masterData = masterData.Value;
 
         }
-        public async Task ExportFileAsync(Ds0Request ds0Request)
+        public async Task GenerateFileAsync(Ds0Request ds0Request)
         {
             var records = GenerateNewAddressData(ds0Request.PostCode, ds0Request.FromHouseNumber, ds0Request.ToHouseNumber);
             var path = Path.Combine(_ds0Setting.DiskPath, $"DS0-{ds0Request.PostCode.ToUpper()}-{ds0Request.ToHouseNumber}-{DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss")}.csv");

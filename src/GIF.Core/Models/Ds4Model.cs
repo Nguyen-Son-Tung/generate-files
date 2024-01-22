@@ -30,8 +30,15 @@
         public double? Impedance2v { get; set; }
         public string? Location { get; set; }
         public string? FTUType { get; set; }
-        public string? DeliveryStatus { get; set; }
+        public int? DeliveryStatus { get; set; }
         public string? DeliveryStatusReason { get; set; }
         public string? Comment { get; set; }
+    }
+
+    public class Ds4Request
+    {
+        public string PostCode { get; set; } = default!;
+        public int FromHouseNumber { get; set; }
+        public int ToHouseNumber { get; set; }
     }
 }

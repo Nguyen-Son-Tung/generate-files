@@ -6,5 +6,6 @@
         public string? Co { get; set; }
         public string? WP { get; set; }
         public string? LC { get; set; }
+        public string? Builder { get; set; }
     }
 }
