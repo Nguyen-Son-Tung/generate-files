@@ -14,5 +14,20 @@ namespace GIF.Core.Services
             await csv.NextRecordAsync();
             csv.WriteRecords(records);
         }
+
+        public T[] Read<T>(string path) where T : class
+        {
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                Delimiter = ";"
+            };
+
+            using (var reader = new StreamReader(path))
+            using (var csv = new CsvReader(reader, config))
+            {
+                var records = csv.GetRecords<T>().ToArray();
+                return records;
+            }
+        }
     }
 }

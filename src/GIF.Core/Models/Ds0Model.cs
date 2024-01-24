@@ -1,4 +1,5 @@
 ﻿using CsvHelper.Configuration.Attributes;
+using Newtonsoft.Json;
 
 namespace GIF.Core.Models
 {
@@ -11,7 +12,7 @@ namespace GIF.Core.Models
         public string? Straat { get; set; }
 
         [Name("Huisnummer"), Index(3)]
-        public int Huisnummer { get; set; }
+        public string? Huisnummer { get; set; }
 
         [Name("Toevoeging"), Index(4)]
         public string? Toevoeging { get; set; }
@@ -52,13 +53,13 @@ namespace GIF.Core.Models
         public string? RawYCoordinate { get; set; }
 
         [Name("Geactiveerd"), Index(17)]
-        public int? Geactiveerd { get; set; }
+        public string? Geactiveerd { get; set; }
 
         [Name("Deactivatie commentaar"), Index(18)]
         public string? DeactivatieCommentaar { get; set; }
 
         [Name("Orderbaar"), Index(19)]
-        public int? Orderbaar { get; set; }
+        public string? Orderbaar { get; set; }
 
         [Name("Niet Orderbaar Commentaar"), Index(20)]
         public string? NotOrderbaarCommentaar { get; set; }
@@ -74,11 +75,19 @@ namespace GIF.Core.Models
 
         [Name("Collectiviteit opmerking"), Index(24)]
         public string? CollectiviteitOpmerking { get; set; }
+
+        public Ds0Model Clone()
+        {
+            var serialized = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<Ds0Model>(serialized) ?? throw new InvalidCastException("Cannot clone object.");
+        }
     }
 
     public class Ds0Request
     {
         public string PostCode { get; set; } = default!;
+        public string? HouseNumberExt { get; set; }
+        public string? Room { get; set; }
         public int FromHouseNumber { get; set; }
         public int ToHouseNumber { get; set; }
     }

@@ -18,9 +18,16 @@ namespace GIF.Core.Services
             _masterData = masterData.Value;
 
         }
-        public async Task GenerateFileAsync(Ds0Request ds0Request)
+        public async Task GenerateFileAsync(Ds0Request ds0Request, int version)
         {
-            var records = GenerateNewAddressData(ds0Request.PostCode, ds0Request.FromHouseNumber, ds0Request.ToHouseNumber);
+            var records = new List<Ds0Model>();
+            if (version == 1)
+                records.AddRange(GenerateNewAddressData(ds0Request.PostCode, ds0Request.FromHouseNumber, ds0Request.ToHouseNumber));
+            else if (version == 2)
+                records.AddRange(GenerateFromPattern(ds0Request));
+            else
+                throw new NotImplementedException("Version has not implemented yet.");
+
             var path = Path.Combine(_ds0Setting.DiskPath, $"DS0-{ds0Request.PostCode.ToUpper()}-{ds0Request.ToHouseNumber}-{DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss")}.csv");
             await _csvFileService.WriteAsync(path, records);
         }
@@ -32,7 +39,7 @@ namespace GIF.Core.Services
                 {
                     Postcode = postCode.ToUpper(),
                     Straat = "Luong Son",
-                    Huisnummer = i,
+                    Huisnummer = i.ToString(),
                     Toevoeging = "",
                     Kamer = "",
                     Plaats = "Khanh Hoa",
@@ -46,15 +53,32 @@ namespace GIF.Core.Services
                     Gebruiksdoel = "Gebruiksdoel",
                     RawXCoordinate = "130128",
                     RawYCoordinate = "417134",
-                    Geactiveerd = 1,
+                    Geactiveerd = "1",
                     DeactivatieCommentaar = "DeactivatieCommentaar",
-                    Orderbaar = 1,
+                    Orderbaar = "1",
                     NotOrderbaarCommentaar = "",
                     Buitengebied = "Buitengebied",
                     TypeBouw = "Hoogbouw",
                     Collectiviteit = "WOCO",
                     CollectiviteitOpmerking = "CollectiviteitOpmerking"
                 };
+            }
+        }
+
+        private IEnumerable<Ds0Model> GenerateFromPattern(Ds0Request ds0Request)
+        {
+            var records = _csvFileService.Read<Ds0Model>(_ds0Setting.PatternFilePath);
+            var patternRecord = records.First();
+            for (var i = ds0Request.FromHouseNumber; i <= ds0Request.ToHouseNumber; i++)
+            {
+                var temp = patternRecord.Clone();
+                temp.Postcode = ds0Request.PostCode.ToUpper();
+                temp.Huisnummer = i + "";
+                temp.Toevoeging = temp.Toevoeging == "{houseNumberExt}" ? null : ds0Request.HouseNumberExt;
+                temp.Kamer = temp.Kamer == "{room}" ? null : ds0Request.Room;
+                temp.Gebied = _masterData.Area;
+                temp.Bouwopdracht = _masterData.Co;
+                yield return temp;
             }
         }
     }
