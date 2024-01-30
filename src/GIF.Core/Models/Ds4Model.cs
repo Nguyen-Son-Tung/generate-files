@@ -1,4 +1,7 @@
-﻿namespace GIF.Core.Models
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
+
+namespace GIF.Core.Models
 {
     public class Ds4Model
     {
@@ -33,12 +36,26 @@
         public int? DeliveryStatus { get; set; }
         public string? DeliveryStatusReason { get; set; }
         public string? Comment { get; set; }
+
+        public Ds4Model Clone()
+        {
+            var serialized = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<Ds4Model>(serialized) ?? throw new InvalidCastException("Cannot clone object.");
+        }
     }
 
     public class Ds4Request
     {
-        public string PostCode { get; set; } = default!;
-        public int FromHouseNumber { get; set; }
-        public int ToHouseNumber { get; set; }
+        [Required]
+        public string PostCode { get; set; } = "1212TD";
+        [Required]
+        public int HouseNumber { get; set; } = 1;
+        [Required]
+        public string HouseExtension { get; set; } = "A";
+        [Required]
+        public int RoomStartNumber { get; set; } = 1;
+        [Required]
+        public int RoomEndNumber { get; set; } = 100;
+        public int Step { get; set; } = 1;
     }
 }
