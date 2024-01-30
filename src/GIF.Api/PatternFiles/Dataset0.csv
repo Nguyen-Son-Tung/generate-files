@@ -1,2 +1,2 @@
 ﻿Postcode;Straat;Huisnummer;Toevoeging;Kamer;Plaats;Buurtschap;Gemeente;Gebied;Bouwopdracht;Adres type;Opmerking;Bag Id;Gebruiksdoel;X;Y;Geactiveerd;Deactivatie commentaar;Orderbaar;Niet Orderbaar Commentaar;Kern/Buitengebied;Type bouw;Collectiviteit;Collectiviteit opmerking
-{postcode};Luong Son;{houseNumber};{houseNumberExt};{room};Khanh Hoa;Nha Trang;Vinh Luong;{areaCode};{coCode};FttH-Wit;Opmerking;1710000000000000;Gebruiksdoel;130128;417134;1;DeactivatieCommentaar;1;;Buitengebied;Hoogbouw;WOCO;CollectiviteitOpmerking
+{postcode};Luong Son;0;{houseNumberExt};{room};Khanh Hoa;Nha Trang;Vinh Luong;{areaCode};{coCode};FttH-Wit;Opmerking;1710000000000000;Gebruiksdoel;130128;417134;1;DeactivatieCommentaar;1;;Buitengebied;Hoogbouw;WOCO;CollectiviteitOpmerking

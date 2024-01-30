@@ -1,5 +1,6 @@
 ﻿using CsvHelper.Configuration.Attributes;
 using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace GIF.Core.Models
 {
@@ -12,7 +13,7 @@ namespace GIF.Core.Models
         public string? Straat { get; set; }
 
         [Name("Huisnummer"), Index(3)]
-        public string? Huisnummer { get; set; }
+        public int? Huisnummer { get; set; }
 
         [Name("Toevoeging"), Index(4)]
         public string? Toevoeging { get; set; }
@@ -85,10 +86,18 @@ namespace GIF.Core.Models
 
     public class Ds0Request
     {
-        public string PostCode { get; set; } = default!;
-        public string? HouseNumberExt { get; set; }
-        public string? Room { get; set; }
-        public int FromHouseNumber { get; set; }
-        public int ToHouseNumber { get; set; }
+        [Required]
+        public string PostCode { get; set; } = "1212TD";
+        [Required]
+        public int HouseNumber { get; set; } = 1;
+        [Required]
+        public string HouseExtension { get; set; } = "A";
+        [Required]
+        public int RoomStartNumber { get; set; } = 1;
+        [Required]
+        public int RoomEndNumber { get; set; } = 100;
+
+        public string GetIdentity()
+            => $"{PostCode}-{HouseNumber}-{HouseExtension}-{RoomEndNumber}".ToUpper();
     }
 }

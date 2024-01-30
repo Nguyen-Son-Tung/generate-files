@@ -21,7 +21,8 @@ namespace GIF.Core.Services
         public async Task GenerateBasicFileAsync(Ds4Request request)
         {
             var records = GenerateFromPattern(request);
-            var path = Path.Combine(_ds4Setting.DiskPath, $"{_masterData.Builder}-{_masterData.Co}-{DateTime.Now.ToString("yyyy-MM-dd-HHmmss")}.csv");
+            var dateFormat = "yyyy-MM-dd-HHmmss";
+            var path = Path.Combine(_ds4Setting.DiskPath, $"{_masterData.Builder}-{_masterData.Co}-{DateTime.Now.ToString(dateFormat)}.csv");
             await _csvFileService.WriteAsync(path, records);
         }
 

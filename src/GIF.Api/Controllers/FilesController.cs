@@ -17,9 +17,9 @@ namespace GIF.Api.Controllers
         }
 
         [HttpPost("ds0")]
-        public async Task<IActionResult> GenerateDs0([FromBody] Ds0Request request, [FromHeader(Name = "X-API-Version")] int xApiVersion = 2)
+        public async Task<IActionResult> GenerateDs0([FromBody] Ds0Request request)
         {
-            await _ds0FileService.GenerateFileAsync(request, xApiVersion);
+            await _ds0FileService.GenerateFileAsync(request);
             return Ok("A file has been generated successfully.");
         }
 
