@@ -1,5 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using GIF.Core.Enums;
+using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace GIF.Core.Models
 {
@@ -56,6 +58,8 @@ namespace GIF.Core.Models
         public int RoomStartNumber { get; set; } = 1;
         [Required]
         public int RoomEndNumber { get; set; } = 100;
+        [System.Text.Json.Serialization.JsonConverter(typeof(JsonStringEnumConverter))]
+        public Ds4FileTemplate? Template { get; set; }
         public int Step { get; set; } = 1;
     }
 }

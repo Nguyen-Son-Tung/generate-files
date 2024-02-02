@@ -69,7 +69,24 @@ namespace GIF.Core.Services
 
         private IEnumerable<Ds4Model> GenerateFromPattern(Ds4Request ds4request)
         {
-            var records = _csvFileService.Read<Ds4Model>(_ds4Setting.PatternFilePath);
+            string patternPath = _ds4Setting.PatternFilePath;
+            string patternFile = "";
+            switch (ds4request.Template)
+            {
+                case Enums.Ds4FileTemplate.ODF:
+                    patternFile = Path.Combine(patternPath, "Dataset4_ODF.csv");
+                    break;
+                case Enums.Ds4FileTemplate.HPP:
+                    patternFile = Path.Combine(patternPath, "Dataset4_HPP.csv");
+                    break;
+                case Enums.Ds4FileTemplate.Delivery0:
+                    patternFile = Path.Combine(patternPath, "Dataset4_Delivery0.csv");
+                    break;
+                default:
+                    patternFile = Path.Combine(patternPath, "Dataset4_ODF.csv");
+                    break;
+            }
+            var records = _csvFileService.Read<Ds4Model>(patternFile);
             var patternRecord = records[0];
             for (var i = ds4request.RoomStartNumber; i <= ds4request.RoomEndNumber; i++)
             {

@@ -1,0 +1,2 @@
+﻿DhId;SearchCode;PostalCode;HouseNumber;HouseNumberExtension;Room;StreetName;City;CustomerPermission;HPPlasticStart;HPPlasticPlandate;HPPlasticCompleted;HCPlandate;HCCustomerAppointment;HCCompleted;LC;WP;Cabinet1v;Tray1v;Position1v;Cabinet2v;Tray2v;Position2v;EVPCode;Impedance1v;Impedance2v;Location;FTUType;DeliveryStatus;DeliveryStatusReason;Comment
+;{searchCode};{postcode};0;{houseNumberExt};{room};Luong Son;Nha Trang;Ja;01-01-2024;01-01-2024;01-01-2024;04-01-2024;04-01-2024;04-01-2024;{LC};{WP};0;0;0;;;;GIESEN-01-EVP01-04;;;MTK;C_FTU;0;;
