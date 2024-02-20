@@ -101,8 +101,21 @@ namespace GIF.Core.Services
                 temp.Tray1v = i * ds4request.Step;
                 temp.Position1v = i;
                 temp.SearchCode = $"{ds4request.PostCode}|{temp.HouseNumber}|{temp.HouseNumberExtension}|{temp.Room}".ToUpper();
+                temp.HPPlasticPlandate = FillDateValue(temp.HPPlasticPlandate);
+                temp.HPPlasticPlandate = FillDateValue(temp.HPPlasticStart);
+                temp.HPPlasticPlandate = FillDateValue(temp.HPPlasticCompleted);
+                temp.HPPlasticPlandate = FillDateValue(temp.HCPlandate);
+                temp.HPPlasticPlandate = FillDateValue(temp.HCCustomerAppointment);
+                temp.HPPlasticPlandate = FillDateValue(temp.HCCompleted);
                 yield return temp;
             }
+        }
+
+        private string? FillDateValue(string? value) 
+        {
+            if (string.IsNullOrEmpty(value))
+                return value;
+            return DateTime.Now.AddDays(-2).ToString("dd-MM-yyyy");
         }
     }
 }
