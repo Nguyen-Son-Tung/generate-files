@@ -102,11 +102,11 @@ namespace GIF.Core.Services
                 temp.Position1v = i;
                 temp.SearchCode = $"{ds4request.PostCode}|{temp.HouseNumber}|{temp.HouseNumberExtension}|{temp.Room}".ToUpper();
                 temp.HPPlasticPlandate = FillDateValue(temp.HPPlasticPlandate);
-                temp.HPPlasticPlandate = FillDateValue(temp.HPPlasticStart);
-                temp.HPPlasticPlandate = FillDateValue(temp.HPPlasticCompleted);
-                temp.HPPlasticPlandate = FillDateValue(temp.HCPlandate);
-                temp.HPPlasticPlandate = FillDateValue(temp.HCCustomerAppointment);
-                temp.HPPlasticPlandate = FillDateValue(temp.HCCompleted);
+                temp.HPPlasticStart = FillDateValue(temp.HPPlasticStart);
+                temp.HPPlasticCompleted = FillDateValue(temp.HPPlasticCompleted);
+                temp.HCPlandate = FillDateValue(temp.HCPlandate);
+                temp.HCCustomerAppointment = FillDateValue(temp.HCCustomerAppointment);
+                temp.HCCompleted = FillDateValue(temp.HCCompleted);
                 yield return temp;
             }
         }
