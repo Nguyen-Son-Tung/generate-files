@@ -30,6 +30,7 @@ namespace GIF.Core.Services
             {
                 Enums.Ds4FileTemplate.ODF => Path.Combine(patternPath, "Dataset4_ODF.csv"),
                 Enums.Ds4FileTemplate.HPP => Path.Combine(patternPath, "Dataset4_HPP.csv"),
+                Enums.Ds4FileTemplate.HPP_D2 => Path.Combine(patternPath, "Dataset4_HPP_D2.csv"),
                 Enums.Ds4FileTemplate.Delivery0 => Path.Combine(patternPath, "Dataset4_Delivery0.csv"),
                 _ => Path.Combine(patternPath, "Dataset4_ODF.csv"),
             };
