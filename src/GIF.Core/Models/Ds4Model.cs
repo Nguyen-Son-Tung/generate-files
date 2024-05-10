@@ -60,6 +60,14 @@ namespace GIF.Core.Models
         public int RoomEndNumber { get; set; } = 100;
         [System.Text.Json.Serialization.JsonConverter(typeof(JsonStringEnumConverter))]
         public Ds4FileTemplate? Template { get; set; }
+        [Required]
+        public string WP { get; set; } = default!;
+        [Required]
+        public string LC { get; set; } = default!;
+        [Required]
+        public string Builder { get; set; } = default!;
+        [Required]
+        public string CoCode { get; set; } = default!;
         public int Step { get; set; } = 1;
     }
 }

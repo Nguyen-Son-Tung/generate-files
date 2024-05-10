@@ -96,6 +96,10 @@ namespace GIF.Core.Models
         public int RoomStartNumber { get; set; } = 1;
         [Required]
         public int RoomEndNumber { get; set; } = 100;
+        [Required]
+        public string AreaCode { get; set; } = default!;
+        [Required]
+        public string CoCode { get; set; } = default!;
 
         public string GetIdentity()
             => $"{PostCode}-{HouseNumber}-{HouseExtension}-{RoomEndNumber}".ToUpper();
