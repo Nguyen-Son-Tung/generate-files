@@ -11,11 +11,19 @@
     <None Remove="PatternFiles\Dataset0.csv" />
     <None Remove="PatternFiles\Dataset4_Delivery0.csv" />
     <None Remove="PatternFiles\Dataset4_HPP.csv" />
+    <None Remove="PatternFiles\Dataset4_HPP_D2.csv" />
     <None Remove="PatternFiles\Dataset4_ODF.csv" />
+    <None Remove="PatternFiles\Dataset4_Shadow1.csv" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="PatternFiles\Dataset0.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PatternFiles\Dataset4_Shadow1.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PatternFiles\Dataset4_HPP_D2.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="PatternFiles\Dataset4_HPP.csv">

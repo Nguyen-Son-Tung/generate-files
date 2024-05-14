@@ -5,6 +5,7 @@
         ODF,
         HPP,
         HPP_D2,
-        Delivery0
+        Delivery0,
+        Shadow1
     }
 }
