@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="PatternFiles\Dataset0.csv" />
+    <None Remove="PatternFiles\Dataset0ADM.csv" />
     <None Remove="PatternFiles\Dataset4_Delivery0.csv" />
     <None Remove="PatternFiles\Dataset4_HPP.csv" />
     <None Remove="PatternFiles\Dataset4_HPP_D2.csv" />
@@ -17,6 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="PatternFiles\Dataset0ADM.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="PatternFiles\Dataset0.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
